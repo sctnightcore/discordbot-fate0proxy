@@ -4,7 +4,7 @@ import os
 import requests
 import time
 
-TOKEN = 'MzA0OTI0NTQxNjIzNDY4MDMz.XSAQSA.kC3eDiJgmkeWW-jgfagKDdSa4wY' #discord bot token
+TOKEN = '' #discord bot token
 proxythlist = []
 client = discord.Client()
 

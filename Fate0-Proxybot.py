@@ -27,20 +27,20 @@ async def on_message(message):
                             file_handler.write("{0}\n".format(ipport))
                             count += 1
                 print('[{0}]: GET TH PROXY: {1}'.format(time.ctime(),count))
-                return (True,count)
+                res_discord = await message.channel.send('Proxy TH: {0}'.format(count),file=discord.File('proxy_Th.txt'))
+                if res_discord:
+                    print('[{0}]: Upload to Discord! is Success'.format(time.ctime()))
+                else:
+                    print('[{0}]: Upload to Discord! is Fail'.format(time.ctime()))
+                if os.path.exists("proxy_Th.txt"):
+                    os.remove("proxy_Th.txt")
+                    print('[{0}]: DEL proxy_Th.txt'.format(time.ctime()))
+                else:
+                    print('[{0}]: proxy_Th.txt dont defined'.format(time.ctime()))
             else:
                 print('FATE0 HTTP CODE != 200')
-                return False
-        res,count = await fate0proxy(message)
-        if res == True:
-            await message.channel.send('Proxy TH: {0}'.format(count),file=discord.File('proxy_Th.txt'))
-        else:
-            await message.channel.send('Fail get Fate0!')
-        if os.path.exists("proxy_Th.txt"):
-            os.remove("proxy_Th.txt")
-            print('[{0}]: DEL proxy_Th.txt'.format(time.ctime()))
-        else:
-            print('[{0}]: proxy_Th.txt dont defined'.format(time.ctime()))
+                await message.channel.send('Fail get Fate0!')
+        await fate0proxy(message)
     if message.content.startswith('!ping'):
         await message.channel.send('pong!')
 
